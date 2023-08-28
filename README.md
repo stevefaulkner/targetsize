@@ -14,5 +14,5 @@ Scripted aid to identifying overlapping targets. It is meant to help test WCAG 2
 A desire to make the process of checking [2.5.8 Target Size (Minimum)](https://www.w3.org/TR/WCAG22/#target-size-minimum) as painless and swift as is possible given my severe limitations in writing JavaScript .
 A rather torturous and [elongated struggle with ChatGPT](https://chat.openai.com/share/44300874-351e-4c4e-a760-f6032ac1d8a0)
 
-# notes
+## notes
 - this script is largely untested and probably unreliable. My hope is someone who can actually write/understand JavaScript will improve it.
