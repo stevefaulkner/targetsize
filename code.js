@@ -31,6 +31,8 @@
 
   // Iterate through all interactive elements to find their centers and create SVG circles around them
   elements.forEach(el => {
+    if(!el.matches('label') && el.closest('label')) { return; }
+
     const center = getCenter(el);
     centers.push({ element: el, center: center });
 
