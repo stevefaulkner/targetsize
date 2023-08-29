@@ -25,12 +25,14 @@
   const SVG_NS = 'http://www.w3.org/2000/svg';
   
   // Get all interactive elements that are visible
-  const elements = [...document.querySelectorAll('a, button, input:not([type=hidden]), select, textarea, [tabindex], [role=button], [role=checkbox], [role=link], [role=menuitem], [role=option], [role=radio], [role=switch], [role=tab]')].filter(isVisible);
+  const elements = [...document.querySelectorAll('a, label, button, input:not([type=hidden]), select, textarea, [tabindex], [role=button], [role=checkbox], [role=link], [role=menuitem], [role=option], [role=radio], [role=switch], [role=tab]')].filter(isVisible);
   
   const centers = [];
 
   // Iterate through all interactive elements to find their centers and create SVG circles around them
   elements.forEach(el => {
+    if(!el.matches('label') && el.closest('label')) { return; }
+
     const center = getCenter(el);
     centers.push({ element: el, center: center });
 
@@ -49,14 +51,19 @@
     circle.setAttribute('cx', '12');
     circle.setAttribute('cy', '12');
     circle.setAttribute('r', '12');
-    
+
+    const clip = document.createElementNS(SVG_NS, 'clipPath');
+    clip.setAttribute('id', 'clip');
+    clip.appendChild(circle.cloneNode());
+    svg.appendChild(clip);
+    circle.setAttribute('clip-path', 'url(#clip)');
+
     if (el.getBoundingClientRect().width < 24 || el.getBoundingClientRect().height < 24) {
-      circle.setAttribute('fill', 'rgba(255, 0, 0, 0.3)');
-      circle.setAttribute('stroke', 'rgba(255, 0, 0, 0.8)');
-      circle.setAttribute('stroke-width', '1');
-      circle.setAttribute('stroke-dasharray', '2,2');
-    } else {
       circle.setAttribute('fill', 'rgba(0, 0, 255, 0.3)');
+    } else {
+      circle.setAttribute('fill', 'rgba(0, 200, 0, 0.3)');
+      circle.setAttribute('stroke', 'rgba(0, 200, 0, 0.8)');
+      circle.setAttribute('stroke-width', '4');
     }
 
     svg.appendChild(circle);
