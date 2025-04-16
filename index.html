@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" class="my-bm-page">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://nfreear.github.io/elements/src/style/my-bookmarklet.css">
+
+  <title>Target size bookmarklet</title>
+
+  <h1>Target size bookmarklet</h1>
+
+  <p>
+    Scripted aid to identifying overlapping targets. It is meant to help test WCAG 2.2 Success Criterion
+    <a href="https://www.w3.org/TR/WCAG22/#target-size-minimum">2.5.8 Target Size (Minimum)</a>.
+    (<a href="https://github.com/stevefaulkner/targetsize">Source on GitHub</a>)
+  </p>
+
+  <p>
+    <my-bookmarklet name="Target size">Loading…</my-bookmarklet>
+  </p>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "local:bookmarkletSource": "./code.js",
+      "ghp:my-bookmarklet": "https://nfreear.github.io/elements/i.js",
+      "unpkg:my-bookmarklet": "https://unpkg.com/ndf-elements@^1/i.js"
+    },
+    "myElements": {
+      "use": [ "my-bookmarklet" ]
+    }
+  }
+  </script>
+
+  <script type="module">
+    import 'ghp:my-bookmarklet';
+    import bookmarkletSource from 'local:bookmarkletSource';
+
+    const bookmarkletElement = document.querySelector('my-bookmarklet');
+    bookmarkletElement.fromFunction(bookmarkletSource);
+  </script>
+
+</html>

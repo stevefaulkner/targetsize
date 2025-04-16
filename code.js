@@ -1,6 +1,7 @@
 // Self-invoking function to prevent polluting the global namespace
+export default function targetSizeBookmarkletSource () {
 (function () {
-  // Function to get the center of an element
+  /* Function to get the center of an element */
   function getCenter(el) {
     const rect = el.getBoundingClientRect();
     return {
@@ -9,7 +10,7 @@
     };
   }
 
-  // Function to check if an element or its ancestors are hidden
+  /* Function to check if an element or its ancestors are hidden */
   function isVisible(el) {
     let current = el;
     while (current) {
@@ -23,13 +24,13 @@
   }
 
   const SVG_NS = 'http://www.w3.org/2000/svg';
-  
-  // Get all interactive elements that are visible
+
+  /* Get all interactive elements that are visible */
   const elements = [...document.querySelectorAll('a, label, button, input:not([type=hidden]), select, textarea, [tabindex], [role=button], [role=checkbox], [role=link], [role=menuitem], [role=option], [role=radio], [role=switch], [role=tab]')].filter(isVisible);
-  
+
   const centers = [];
 
-  // Iterate through all interactive elements to find their centers and create SVG circles around them
+  /* Iterate through all interactive elements to find their centers and create SVG circles around them */
   elements.forEach(el => {
     if(!el.matches('label') && el.closest('label')) { return; }
 
@@ -72,7 +73,7 @@
 
   const overlaps = [];
 
-  // Check for overlapping elements
+  /* Check for overlapping elements */
   centers.forEach((item1, index) => {
     centers.slice(index + 1).forEach(item2 => {
       if (Math.sqrt(Math.pow(item2.center.left - item1.center.left, 2) + Math.pow(item2.center.top - item1.center.top, 2)) < 24) {
@@ -82,10 +83,11 @@
     });
   });
 
-  // Remove duplicates and set aria-description to 'overlap'
+  /* Remove duplicates and set aria-description to 'overlap' */
   const uniqueOverlaps = [...new Set(overlaps)];
   uniqueOverlaps.forEach(el => el.setAttribute('aria-description', 'overlap'));
 
-  // Alert the user about the number of overlapping elements
+  /* Alert the user about the number of overlapping elements */
   alert(`There are ${uniqueOverlaps.length} overlapping controls.`);
 })();
+}

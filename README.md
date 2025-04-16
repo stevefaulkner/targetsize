@@ -17,3 +17,13 @@ A rather torturous and [elongated struggle with ChatGPT](https://chat.openai.com
 ## notes
 - this script is largely untested and probably unreliable. My hope is someone who can actually write/understand JavaScript will improve it.
 - thanks to [@brothercake](https://github.com/brothercake) for his contrutions
+
+## Development
+1. Install dependencies using [Node](https://nodejs.org) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) (or [Yarn](https://yarnpkg.com/) - _untested_).
+```
+npm i
+```
+2. Run the dev server (http://localhost:8080):
+```
+npm start
+```
