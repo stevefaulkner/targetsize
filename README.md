@@ -16,4 +16,4 @@ A rather torturous and [elongated struggle with ChatGPT](https://chat.openai.com
 
 ## notes
 - this script is largely untested and probably unreliable. My hope is someone who can actually write/understand JavaScript will improve it.
-- thanks to [@brothercake](https://github.com/brothercake) for his contrutions
+- thanks to [@brothercake](https://github.com/brothercake) for his contributions
